@@ -3,412 +3,150 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-
-<!-- Open Graph - WhatsApp preview -->
 <meta property="og:title" content="Marcos Jesus Dev CwB — Apps Android"/>
 <meta property="og:description" content="5 apps publicados na Google Play Store. Produtividade, finanças, idiomas e neurociência — feitos em Curitiba."/>
-<meta property="og:image" content="https://marcosjesusdevcwb.vercel.app/og-image.png"/>
-<meta property="og:url" content="https://marcosjesusdevcwb.vercel.app"/>
+<meta property="og:image" content="https://marcosjesus-dev-cwb.vercel.app/public/icon-beyondwords.png"/>
+<meta property="og:url" content="https://marcosjesus-dev-cwb.vercel.app"/>
 <meta property="og:type" content="website"/>
-<meta name="twitter:card" content="summary_large_image"/>
-
 <title>Marcos Jesus Dev CwB — Apps Android</title>
-
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet"/>
-
 <style>
   *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-
-  :root {
-    --bg:       #06080f;
-    --surface:  #0d1120;
-    --border:   #1a2035;
-    --accent:   #00e5ff;
-    --gold:     #ffd54f;
-    --text:     #e8eaf6;
-    --muted:    #7986cb;
-    --radius:   12px;
-  }
-
+  :root { --bg:#06080f; --surface:#0d1120; --border:#1a2035; --accent:#00e5ff; --gold:#ffd54f; --text:#e8eaf6; --muted:#7986cb; --radius:12px; }
   html { scroll-behavior: smooth; }
-
-  body {
-    font-family: 'Space Grotesk', sans-serif;
-    background: var(--bg);
-    color: var(--text);
-    min-height: 100vh;
-    line-height: 1.6;
-  }
-
-  /* HERO */
-  .hero {
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    padding: 2rem 1.5rem;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .hero::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background:
-      radial-gradient(ellipse 80% 50% at 50% 0%, rgba(0,229,255,0.08) 0%, transparent 70%),
-      radial-gradient(ellipse 60% 40% at 80% 80%, rgba(124,77,255,0.06) 0%, transparent 60%);
-    pointer-events: none;
-  }
-
-  .badge {
-    display: inline-block;
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.72rem;
-    color: var(--accent);
-    border: 1px solid rgba(0,229,255,0.3);
-    border-radius: 999px;
-    padding: 0.3rem 1rem;
-    margin-bottom: 1.5rem;
-    letter-spacing: 0.08em;
-  }
-
-  .hero h1 {
-    font-size: clamp(2rem, 6vw, 3.8rem);
-    font-weight: 700;
-    line-height: 1.1;
-    margin-bottom: 1rem;
-    background: linear-gradient(135deg, #ffffff 0%, var(--accent) 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-  }
-
-  .hero p {
-    font-size: clamp(1rem, 2.5vw, 1.2rem);
-    color: var(--muted);
-    max-width: 480px;
-    margin: 0 auto 2.5rem;
-  }
-
-  .hero-stats {
-    display: flex;
-    gap: 2.5rem;
-    justify-content: center;
-    flex-wrap: wrap;
-  }
-
-  .stat {
-    text-align: center;
-  }
-
-  .stat-num {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 2rem;
-    font-weight: 700;
-    color: var(--accent);
-    display: block;
-  }
-
-  .stat-label {
-    font-size: 0.8rem;
-    color: var(--muted);
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-  }
-
-  .scroll-hint {
-    position: absolute;
-    bottom: 2rem;
-    left: 50%;
-    transform: translateX(-50%);
-    color: var(--muted);
-    font-size: 0.8rem;
-    animation: bounce 2s infinite;
-  }
-
-  @keyframes bounce {
-    0%, 100% { transform: translateX(-50%) translateY(0); }
-    50% { transform: translateX(-50%) translateY(6px); }
-  }
-
-  /* APPS GRID */
-  .apps {
-    padding: 5rem 1.5rem;
-    max-width: 1000px;
-    margin: 0 auto;
-  }
-
-  .section-label {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.75rem;
-    color: var(--accent);
-    text-transform: uppercase;
-    letter-spacing: 0.15em;
-    margin-bottom: 0.75rem;
-  }
-
-  .section-title {
-    font-size: clamp(1.5rem, 4vw, 2.2rem);
-    font-weight: 700;
-    margin-bottom: 3rem;
-    color: var(--text);
-  }
-
-  .apps-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 1.25rem;
-  }
-
-  .app-card {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    padding: 1.5rem;
-    display: flex;
-    flex-direction: column;
-    gap: 0.75rem;
-    transition: border-color 0.2s, transform 0.2s;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .app-card::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; right: 0;
-    height: 2px;
-    background: var(--card-accent, var(--accent));
-    opacity: 0.7;
-  }
-
-  .app-card:hover {
-    border-color: var(--card-accent, var(--accent));
-    transform: translateY(-3px);
-  }
-
-  .app-card.coming-soon {
-    opacity: 0.65;
-  }
-
-  .app-header {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-  }
-
-  .app-icon {
-    width: 48px;
-    height: 48px;
-    border-radius: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.5rem;
-    flex-shrink: 0;
-    background: var(--card-bg, rgba(0,229,255,0.1));
-  }
-
-  .app-name {
-    font-size: 1rem;
-    font-weight: 700;
-    color: var(--text);
-  }
-
-  .app-tag {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.65rem;
-    color: var(--card-accent, var(--accent));
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-  }
-
-  .app-desc {
-    font-size: 0.88rem;
-    color: var(--muted);
-    flex: 1;
-  }
-
-  .app-btn {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.4rem;
-    background: var(--card-accent, var(--accent));
-    color: #000;
-    font-family: 'Space Grotesk', sans-serif;
-    font-weight: 700;
-    font-size: 0.82rem;
-    padding: 0.6rem 1rem;
-    border-radius: 8px;
-    text-decoration: none;
-    transition: opacity 0.2s;
-    margin-top: 0.25rem;
-  }
-
-  .app-btn:hover { opacity: 0.85; }
-
-  .app-btn.disabled {
-    background: var(--border);
-    color: var(--muted);
-    cursor: not-allowed;
-    pointer-events: none;
-  }
-
-  .coming-badge {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.65rem;
-    background: rgba(255,213,79,0.15);
-    color: var(--gold);
-    border: 1px solid rgba(255,213,79,0.3);
-    border-radius: 999px;
-    padding: 0.2rem 0.6rem;
-    display: inline-block;
-    margin-top: 0.25rem;
-    align-self: flex-start;
-  }
-
-  /* FOOTER */
-  footer {
-    border-top: 1px solid var(--border);
-    padding: 2.5rem 1.5rem;
-    text-align: center;
-    color: var(--muted);
-    font-size: 0.82rem;
-  }
-
-  footer a {
-    color: var(--accent);
-    text-decoration: none;
-  }
-
-  footer .dev-credit {
-    margin-top: 0.5rem;
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.75rem;
-    color: rgba(121,134,203,0.5);
-  }
-
-  @media (max-width: 480px) {
-    .hero-stats { gap: 1.5rem; }
-    .apps-grid { grid-template-columns: 1fr; }
-  }
+  body { font-family:'Space Grotesk',sans-serif; background:var(--bg); color:var(--text); min-height:100vh; line-height:1.6; }
+  .hero { min-height:100vh; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding:2rem 1.5rem; position:relative; overflow:hidden; }
+  .hero::before { content:''; position:absolute; inset:0; background:radial-gradient(ellipse 80% 50% at 50% 0%,rgba(0,229,255,0.08) 0%,transparent 70%),radial-gradient(ellipse 60% 40% at 80% 80%,rgba(124,77,255,0.06) 0%,transparent 60%); pointer-events:none; }
+  .badge { display:inline-block; font-family:'JetBrains Mono',monospace; font-size:0.72rem; color:var(--accent); border:1px solid rgba(0,229,255,0.3); border-radius:999px; padding:0.3rem 1rem; margin-bottom:1.5rem; letter-spacing:0.08em; }
+  .hero h1 { font-size:clamp(2rem,6vw,3.8rem); font-weight:700; line-height:1.1; margin-bottom:1rem; background:linear-gradient(135deg,#ffffff 0%,var(--accent) 100%); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+  .hero p { font-size:clamp(1rem,2.5vw,1.2rem); color:var(--muted); max-width:480px; margin:0 auto 2.5rem; }
+  .hero-stats { display:flex; gap:2.5rem; justify-content:center; flex-wrap:wrap; }
+  .stat { text-align:center; }
+  .stat-num { font-family:'JetBrains Mono',monospace; font-size:2rem; font-weight:700; color:var(--accent); display:block; }
+  .stat-label { font-size:0.8rem; color:var(--muted); text-transform:uppercase; letter-spacing:0.1em; }
+  .scroll-hint { position:absolute; bottom:2rem; left:50%; transform:translateX(-50%); color:var(--muted); font-size:0.8rem; animation:bounce 2s infinite; }
+  @keyframes bounce { 0%,100%{transform:translateX(-50%) translateY(0);} 50%{transform:translateX(-50%) translateY(6px);} }
+  .section { padding:5rem 1.5rem; max-width:1000px; margin:0 auto; }
+  .section-label { font-family:'JetBrains Mono',monospace; font-size:0.75rem; color:var(--accent); text-transform:uppercase; letter-spacing:0.15em; margin-bottom:0.75rem; }
+  .section-title { font-size:clamp(1.5rem,4vw,2.2rem); font-weight:700; margin-bottom:3rem; color:var(--text); }
+  .apps-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(280px,1fr)); gap:1.25rem; }
+  .app-card { background:var(--surface); border:1px solid var(--border); border-radius:var(--radius); padding:1.5rem; display:flex; flex-direction:column; gap:0.75rem; transition:border-color 0.2s,transform 0.2s; position:relative; overflow:hidden; }
+  .app-card::before { content:''; position:absolute; top:0; left:0; right:0; height:2px; background:var(--card-accent,var(--accent)); opacity:0.7; }
+  .app-card:hover { border-color:var(--card-accent,var(--accent)); transform:translateY(-3px); }
+  .app-card.coming-soon { opacity:0.65; }
+  .app-header { display:flex; align-items:center; gap:0.75rem; }
+  .app-icon { width:56px; height:56px; border-radius:12px; overflow:hidden; flex-shrink:0; background:var(--card-bg,rgba(0,229,255,0.1)); }
+  .app-icon img { width:100%; height:100%; object-fit:cover; }
+  .app-name { font-size:1rem; font-weight:700; color:var(--text); }
+  .app-tag { font-family:'JetBrains Mono',monospace; font-size:0.65rem; color:var(--card-accent,var(--accent)); text-transform:uppercase; letter-spacing:0.1em; }
+  .app-desc { font-size:0.88rem; color:var(--muted); flex:1; }
+  .app-btn { display:inline-flex; align-items:center; justify-content:center; gap:0.4rem; background:var(--card-accent,var(--accent)); color:#000; font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:0.82rem; padding:0.6rem 1rem; border-radius:8px; text-decoration:none; transition:opacity 0.2s; margin-top:0.25rem; }
+  .app-btn:hover { opacity:0.85; }
+  .coming-badge { font-family:'JetBrains Mono',monospace; font-size:0.65rem; background:rgba(255,213,79,0.15); color:var(--gold); border:1px solid rgba(255,213,79,0.3); border-radius:999px; padding:0.2rem 0.6rem; display:inline-block; margin-top:0.25rem; align-self:flex-start; }
+  .divider { border:none; border-top:1px solid var(--border); margin:0 1.5rem; }
+  footer { border-top:1px solid var(--border); padding:2.5rem 1.5rem; text-align:center; color:var(--muted); font-size:0.82rem; }
+  footer .dev-credit { margin-top:0.5rem; font-family:'JetBrains Mono',monospace; font-size:0.75rem; color:rgba(121,134,203,0.5); }
+  @media (max-width:480px) { .hero-stats{gap:1.5rem;} .apps-grid{grid-template-columns:1fr;} }
 </style>
 </head>
 <body>
 
-<!-- HERO -->
 <section class="hero">
   <span class="badge">📍 Curitiba, Brasil</span>
   <h1>Marcos Jesus<br/>Dev CwB</h1>
-  <p>Apps Android publicados na Google Play Store. Produtividade, finanças, idiomas e neurociência.</p>
+  <p>Apps Android e projetos web. Produtividade, finanças, idiomas e neurociência.</p>
   <div class="hero-stats">
-    <div class="stat">
-      <span class="stat-num">5</span>
-      <span class="stat-label">Apps</span>
-    </div>
-    <div class="stat">
-      <span class="stat-num">5</span>
-      <span class="stat-label">Idiomas</span>
-    </div>
-    <div class="stat">
-      <span class="stat-num">100%</span>
-      <span class="stat-label">Android</span>
-    </div>
+    <div class="stat"><span class="stat-num">5</span><span class="stat-label">Apps</span></div>
+    <div class="stat"><span class="stat-num">2</span><span class="stat-label">Sites</span></div>
+    <div class="stat"><span class="stat-num">5</span><span class="stat-label">Idiomas</span></div>
   </div>
-  <div class="scroll-hint">↓ ver apps</div>
+  <div class="scroll-hint">↓ ver projetos</div>
 </section>
 
-<!-- APPS -->
-<section class="apps">
-  <p class="section-label">// portfólio</p>
-  <h2 class="section-title">Apps publicados</h2>
-
+<section class="section">
+  <p class="section-label">// play store</p>
+  <h2 class="section-title">Apps Android</h2>
   <div class="apps-grid">
 
-    <!-- Beyond Words Pro -->
-    <div class="app-card" style="--card-accent:#00e5ff; --card-bg:rgba(0,229,255,0.08);">
+    <div class="app-card" style="--card-accent:#00e5ff;--card-bg:rgba(0,229,255,0.08);">
       <div class="app-header">
-        <div class="app-icon">🧠</div>
-        <div>
-          <div class="app-name">Beyond Words Pro</div>
-          <div class="app-tag">Linguagem Corporal · 5 idiomas</div>
-        </div>
+        <div class="app-icon"><img src="/public/icon-beyondwords.png" alt="Beyond Words Pro"/></div>
+        <div><div class="app-name">Beyond Words Pro</div><div class="app-tag">Linguagem Corporal · 5 idiomas</div></div>
       </div>
-      <p class="app-desc">+150 sinais de linguagem corporal analisados. Detecte mentiras, microexpressões e padrões de comportamento com Detector de Modo Mental por IA.</p>
-      <a class="app-btn" href="https://play.google.com/store/apps/details?id=com.marcos_jesusdevcwb.beyondwordsproapp" target="_blank" rel="noopener">
-        ▶ Ver na Play Store
-      </a>
+      <p class="app-desc">+150 sinais de linguagem corporal. Detecte mentiras, microexpressões e padrões com IA.</p>
+      <a class="app-btn" href="https://play.google.com/store/apps/details?id=com.marcos_jesusdevcwb.beyondwordsproapp" target="_blank" rel="noopener">▶ Ver na Play Store</a>
     </div>
 
-    <!-- Brain Power Pro -->
-    <div class="app-card coming-soon" style="--card-accent:#7c4dff; --card-bg:rgba(124,77,255,0.08);">
+    <div class="app-card coming-soon" style="--card-accent:#7c4dff;--card-bg:rgba(124,77,255,0.08);">
       <div class="app-header">
-        <div class="app-icon">⚡</div>
-        <div>
-          <div class="app-name">Brain Power Pro</div>
-          <div class="app-tag">Neurociência · Gamificação</div>
-        </div>
+        <div class="app-icon"><img src="/public/icon-brainpower.png" alt="Brain Power Pro"/></div>
+        <div><div class="app-name">Brain Power Pro</div><div class="app-tag">Neurociência · Gamificação</div></div>
       </div>
-      <p class="app-desc">Testes cognitivos, ilusões visuais e gamificação baseada em neurociência. Design premium futurista com assinatura neural única por usuário.</p>
+      <p class="app-desc">Testes cognitivos, ilusões visuais e gamificação baseada em neurociência. Design premium futurista.</p>
       <span class="coming-badge">🔒 Em testes — em breve</span>
     </div>
 
-    <!-- Puff Count BR Pro -->
-    <div class="app-card" style="--card-accent:#69f0ae; --card-bg:rgba(105,240,174,0.08);">
+    <div class="app-card" style="--card-accent:#69f0ae;--card-bg:rgba(105,240,174,0.08);">
       <div class="app-header">
-        <div class="app-icon">🚭</div>
-        <div>
-          <div class="app-name">Puff Count BR Pro</div>
-          <div class="app-tag">Saúde · Produtividade</div>
-        </div>
+        <div class="app-icon"><img src="/public/icon-puffcount.png" alt="Puff Count BR Pro"/></div>
+        <div><div class="app-name">Puff Count BR Pro</div><div class="app-tag">Saúde · Produtividade</div></div>
       </div>
-      <p class="app-desc">Contador de cigarros com alertas diários, estatísticas de economia e acompanhamento da jornada para largar o vício.</p>
-      <a class="app-btn" href="https://play.google.com/store/apps/details?id=com.puffcountbrpro.app" target="_blank" rel="noopener">
-        ▶ Ver na Play Store
-      </a>
+      <p class="app-desc">Contador de cigarros com alertas diários, estatísticas de economia e acompanhamento da jornada.</p>
+      <a class="app-btn" style="background:#69f0ae;" href="https://play.google.com/store/apps/details?id=com.puffcountbrpro.app" target="_blank" rel="noopener">▶ Ver na Play Store</a>
     </div>
 
-    <!-- MoneyPix -->
-    <div class="app-card" style="--card-accent:#ffd54f; --card-bg:rgba(255,213,79,0.08);">
+    <div class="app-card" style="--card-accent:#ffd54f;--card-bg:rgba(255,213,79,0.08);">
       <div class="app-header">
-        <div class="app-icon">💸</div>
-        <div>
-          <div class="app-name">MoneyPix</div>
-          <div class="app-tag">Finanças · Controle</div>
-        </div>
+        <div class="app-icon"><img src="/public/icon-moneypix.png" alt="MoneyPix"/></div>
+        <div><div class="app-name">MoneyPix</div><div class="app-tag">Finanças · Controle</div></div>
       </div>
-      <p class="app-desc">Controle financeiro pessoal simplificado. Registre receitas, despesas e acompanhe seu saldo de forma rápida e visual.</p>
-      <a class="app-btn" style="background:#ffd54f;" href="https://play.google.com/store/apps/details?id=com.marcosjesus.moneypix" target="_blank" rel="noopener">
-        ▶ Ver na Play Store
-      </a>
+      <p class="app-desc">Controle financeiro pessoal simplificado. Registre receitas, despesas e acompanhe seu saldo.</p>
+      <a class="app-btn" style="background:#ffd54f;" href="https://play.google.com/store/apps/details?id=com.marcosjesus.moneypix" target="_blank" rel="noopener">▶ Ver na Play Store</a>
     </div>
 
-    <!-- MoneyGuardZy -->
-    <div class="app-card" style="--card-accent:#ff6e40; --card-bg:rgba(255,110,64,0.08);">
+    <div class="app-card" style="--card-accent:#ff6e40;--card-bg:rgba(255,110,64,0.08);">
       <div class="app-header">
-        <div class="app-icon">🛡️</div>
-        <div>
-          <div class="app-name">MoneyGuardZy</div>
-          <div class="app-tag">Finanças · Segurança</div>
-        </div>
+        <div class="app-icon"><img src="/public/icon-moneyguardzy.png" alt="MoneyGuardZy"/></div>
+        <div><div class="app-name">MoneyGuardZy</div><div class="app-tag">Finanças · Segurança</div></div>
       </div>
-      <p class="app-desc">Guarda-chuva financeiro pessoal. Organize gastos, defina metas e proteja seu orçamento com alertas inteligentes.</p>
-      <a class="app-btn" style="background:#ff6e40;" href="https://play.google.com/store/apps/details?id=com.marcosjesus.moneyguardzy" target="_blank" rel="noopener">
-        ▶ Ver na Play Store
-      </a>
+      <p class="app-desc">Organize gastos, defina metas e proteja seu orçamento com alertas inteligentes.</p>
+      <a class="app-btn" style="background:#ff6e40;" href="https://play.google.com/store/apps/details?id=com.marcosjesus.moneyguardzy" target="_blank" rel="noopener">▶ Ver na Play Store</a>
     </div>
 
   </div>
 </section>
 
-<!-- FOOTER -->
+<hr class="divider"/>
+
+<section class="section">
+  <p class="section-label">// projetos web</p>
+  <h2 class="section-title">Sites & Aplicações</h2>
+  <div class="apps-grid">
+
+    <div class="app-card" style="--card-accent:#ffd54f;--card-bg:rgba(255,213,79,0.08);">
+      <div class="app-header">
+        <div class="app-icon"><img src="/public/icon-tsj.png" alt="Teacher Stella Jesus"/></div>
+        <div><div class="app-name">Teacher Stella Jesus</div><div class="app-tag">Educação · Landing Page</div></div>
+      </div>
+      <p class="app-desc">Site oficial da Teacher Stella Jesus. Produtos digitais de inglês com checkout integrado Kiwify.</p>
+      <a class="app-btn" style="background:#ffd54f;" href="https://teacherstellajesus.com" target="_blank" rel="noopener">🌐 Visitar Site</a>
+    </div>
+
+    <div class="app-card" style="--card-accent:#69f0ae;--card-bg:rgba(105,240,174,0.08);">
+      <div class="app-header">
+        <div class="app-icon"><img src="/public/icon-quitanda.png" alt="Quitanda da Família"/></div>
+        <div><div class="app-name">Quitanda da Família</div><div class="app-tag">E-commerce · WhatsApp</div></div>
+      </div>
+      <p class="app-desc">App de pedidos online com catálogo de 5.400+ produtos, checkout via WhatsApp e integração Supabase.</p>
+      <a class="app-btn" style="background:#69f0ae;" href="https://quitandadafamilia.com.br" target="_blank" rel="noopener">🌐 Visitar Site</a>
+    </div>
+
+  </div>
+</section>
+
 <footer>
   <p>© 2026 Marcos Jesus Dev CwB · Curitiba, Brasil</p>
-  <p class="dev-credit">// feito com React Native · Expo · Vercel</p>
+  <p class="dev-credit">// React Native · Expo · React · Vite · Vercel</p>
 </footer>
 
 </body>
