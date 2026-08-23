@@ -1,34 +1,65 @@
 <!doctype html>
 <html lang="pt-BR">
-<head>
+  <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <!-- Título principal -->
     <title>Marcos Jesus Dev CwB — Apps Android & Web</title>
-    <meta name="description" content="5 apps publicados na Google Play Store. Produtividade, finanças, idiomas e neurociência — feitos em Curitiba." />
+    <meta
+      name="description"
+      content="5 apps publicados na Google Play Store. Produtividade, finanças, idiomas e neurociência — feitos em Curitiba."
+    />
 
     <!-- Favicon (Todas as variações de caminho para não ter erro) -->
-    <link rel="icon" type="image/png" href="https://marcosjesus-dev-cwb.vercel.app/public/logo-mj.png" />
+    <link
+      rel="icon"
+      type="image/png"
+      href="https://marcosjesus-dev-cwb.vercel.app/public/logo-mj.png"
+    />
     <link rel="shortcut icon" type="image/png" href="./public/logo-mj.png" />
-    <link rel="apple-touch-icon" href="https://marcosjesus-dev-cwb.vercel.app/public/logo-mj.png" />
+    <link
+      rel="apple-touch-icon"
+      href="https://marcosjesus-dev-cwb.vercel.app/public/logo-mj.png"
+    />
 
     <!-- Meta Tags Open Graph (WhatsApp, Telegram, LinkedIn) -->
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://marcosjesus-dev-cwb.vercel.app/" />
-    <meta property="og:title" content="Marcos Jesus Dev CwB — Apps Android & Web" />
-    <meta property="og:description" content="5 apps publicados na Google Play Store. Produtividade, finanças, idiomas e neurociência." />
-    <meta property="og:image" content="https://marcosjesus-dev-cwb.vercel.app/public/og-imagemj.png" />
-    <meta property="og:image:secure_url" content="https://marcosjesus-dev-cwb.vercel.app/public/og-imagemj.png" />
+    <meta
+      property="og:title"
+      content="Marcos Jesus Dev CwB — Apps Android & Web"
+    />
+    <meta
+      property="og:description"
+      content="5 apps publicados na Google Play Store. Produtividade, finanças, idiomas e neurociência."
+    />
+    <meta
+      property="og:image"
+      content="https://marcosjesus-dev-cwb.vercel.app/public/og-imagemj.png"
+    />
+    <meta
+      property="og:image:secure_url"
+      content="https://marcosjesus-dev-cwb.vercel.app/public/og-imagemj.png"
+    />
     <meta property="og:image:type" content="image/png" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Marcos Jesus Dev CwB — Apps Android & Web" />
-    <meta name="twitter:description" content="5 apps publicados na Google Play Store." />
-    <meta name="twitter:image" content="https://marcosjesus-dev-cwb.vercel.app/public/og-imagemj.png" />
+    <meta
+      name="twitter:title"
+      content="Marcos Jesus Dev CwB — Apps Android & Web"
+    />
+    <meta
+      name="twitter:description"
+      content="5 apps publicados na Google Play Store."
+    />
+    <meta
+      name="twitter:image"
+      content="https://marcosjesus-dev-cwb.vercel.app/public/og-imagemj.png"
+    />
     <title>Marcos Jesus Dev CwB — Apps Android & Web</title>
 
     <link
@@ -37,43 +68,67 @@
     />
 
     <style>
+      .btn-whatsapp {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  background: #25d366;
+  color: #000;
+  box-shadow: 0 0 20px rgba(37, 211, 102, 0.3);
+}
+
+.whatsapp-gif-icon {
+  width: 26px;
+  height: 26px;
+  display: block;
+  object-fit: contain;
+}
       /* Fundo estilizado com a imagem og-imagemj.png nas seções de Apps e Sites */
-#apps, #web {
-  position: relative;
-  border-radius: 24px;
-  margin-top: 2rem;
-  margin-bottom: 2rem;
-  overflow: hidden;
-}
+      #apps,
+      #web {
+        position: relative;
+        border-radius: 24px;
+        margin-top: 2rem;
+        margin-bottom: 2rem;
+        overflow: hidden;
+      }
 
-#apps::before, #web::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background-image: 
-    linear-gradient(180deg, rgba(5, 7, 14, 0.92) 0%, rgba(5, 7, 14, 0.85) 50%, rgba(5, 7, 14, 0.95) 100%),
-    url("/public/og-imagemj.png");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  opacity: 0.35; /* Ajuste a opacidade aqui se quiser mais forte ou mais fraca */
-  pointer-events: none;
-  z-index: 0;
-}
+      #apps::before,
+      #web::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background-image:
+          linear-gradient(
+            180deg,
+            rgba(5, 7, 14, 0.92) 0%,
+            rgba(5, 7, 14, 0.85) 50%,
+            rgba(5, 7, 14, 0.95) 100%
+          ),
+          url("/public/og-imagemj.png");
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        opacity: 0.35; /* Ajuste a opacidade aqui se quiser mais forte ou mais fraca */
+        pointer-events: none;
+        z-index: 0;
+      }
 
-/* Garante que o conteúdo e cards fiquem na frente do fundo */
-#apps .section-header, #apps .apps-grid,
-#web .section-header, #web .apps-grid {
-  position: relative;
-  z-index: 1;
-}
+      /* Garante que o conteúdo e cards fiquem na frente do fundo */
+      #apps .section-header,
+      #apps .apps-grid,
+      #web .section-header,
+      #web .apps-grid {
+        position: relative;
+        z-index: 1;
+      }
 
-/* Efeito glass nos cards para destacar sobre a imagem de fundo */
-.app-card {
-  background: rgba(10, 14, 28, 0.85) !important;
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-}
+      /* Efeito glass nos cards para destacar sobre a imagem de fundo */
+      .app-card {
+        background: rgba(10, 14, 28, 0.85) !important;
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+      }
       *,
       *::before,
       *::after {
@@ -437,27 +492,29 @@
 
       /* === INFINITE MARQUEE (LETREIRO DE STACK) === */
       /* === FAIXA NOTICIÁRIO FIXA NA TELA (STICKY TICKER) === */
-.marquee-wrapper {
-  position: fixed;          /* Fica fixa na tela enquanto rola a página */
-  bottom: 0;                /* Fixada no rodapé inferior (ou troque por top: 68px para ficar logo abaixo do menu) */
-  left: 0;
-  right: 0;
-  z-index: 90;              /* Fica por cima do conteúdo, mas abaixo do modal/menu */
-  overflow: hidden;
-  padding: 0.85rem 0;
-  background: rgba(5, 7, 14, 0.88); /* Fundo escuro translúcido */
-  backdrop-filter: blur(14px);       /* Efeito de vidro borrado por onde o site passa por trás */
-  -webkit-backdrop-filter: blur(14px);
-  border-top: 1px solid rgba(0, 229, 255, 0.25);
-  border-bottom: 1px solid rgba(0, 229, 255, 0.1);
-  box-shadow: 0 -8px 25px rgba(0, 0, 0, 0.5);
-  white-space: nowrap;
-}
+      .marquee-wrapper {
+        position: fixed; /* Fica fixa na tela enquanto rola a página */
+        bottom: 0; /* Fixada no rodapé inferior (ou troque por top: 68px para ficar logo abaixo do menu) */
+        left: 0;
+        right: 0;
+        z-index: 90; /* Fica por cima do conteúdo, mas abaixo do modal/menu */
+        overflow: hidden;
+        padding: 0.85rem 0;
+        background: rgba(5, 7, 14, 0.88); /* Fundo escuro translúcido */
+        backdrop-filter: blur(
+          14px
+        ); /* Efeito de vidro borrado por onde o site passa por trás */
+        -webkit-backdrop-filter: blur(14px);
+        border-top: 1px solid rgba(0, 229, 255, 0.25);
+        border-bottom: 1px solid rgba(0, 229, 255, 0.1);
+        box-shadow: 0 -8px 25px rgba(0, 0, 0, 0.5);
+        white-space: nowrap;
+      }
 
-/* Espaço extra no final do site para o footer não ficar escondido atrás da faixa */
-body {
-  padding-bottom: 60px;
-}
+      /* Espaço extra no final do site para o footer não ficar escondido atrás da faixa */
+      body {
+        padding-bottom: 60px;
+      }
       .marquee-content {
         display: inline-flex;
         gap: 3rem;
@@ -1233,7 +1290,12 @@ body {
             target="_blank"
             rel="noopener"
           >
-            💬 WhatsApp Direto
+            <img
+              src="/public/icons8-whatsapp.gif"
+              alt="WhatsApp"
+              class="whatsapp-gif-icon"
+            />
+            WhatsApp Direto
           </a>
           <a
             class="btn-contact btn-email"
