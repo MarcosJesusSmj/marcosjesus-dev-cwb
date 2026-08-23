@@ -430,16 +430,28 @@
       }
 
       /* === INFINITE MARQUEE (LETREIRO DE STACK) === */
-      .marquee-wrapper {
-        position: relative;
-        z-index: 1;
-        overflow: hidden;
-        padding: 1.2rem 0;
-        background: rgba(10, 14, 28, 0.6);
-        border-top: 1px solid var(--border);
-        border-bottom: 1px solid var(--border);
-        white-space: nowrap;
-      }
+      /* === FAIXA NOTICIÁRIO FIXA NA TELA (STICKY TICKER) === */
+.marquee-wrapper {
+  position: fixed;          /* Fica fixa na tela enquanto rola a página */
+  bottom: 0;                /* Fixada no rodapé inferior (ou troque por top: 68px para ficar logo abaixo do menu) */
+  left: 0;
+  right: 0;
+  z-index: 90;              /* Fica por cima do conteúdo, mas abaixo do modal/menu */
+  overflow: hidden;
+  padding: 0.85rem 0;
+  background: rgba(5, 7, 14, 0.88); /* Fundo escuro translúcido */
+  backdrop-filter: blur(14px);       /* Efeito de vidro borrado por onde o site passa por trás */
+  -webkit-backdrop-filter: blur(14px);
+  border-top: 1px solid rgba(0, 229, 255, 0.25);
+  border-bottom: 1px solid rgba(0, 229, 255, 0.1);
+  box-shadow: 0 -8px 25px rgba(0, 0, 0, 0.5);
+  white-space: nowrap;
+}
+
+/* Espaço extra no final do site para o footer não ficar escondido atrás da faixa */
+body {
+  padding-bottom: 60px;
+}
       .marquee-content {
         display: inline-flex;
         gap: 3rem;
