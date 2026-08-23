@@ -31,6 +31,43 @@
     />
 
     <style>
+      /* Fundo estilizado com a imagem og-imagemj.png nas seções de Apps e Sites */
+#apps, #web {
+  position: relative;
+  border-radius: 24px;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  overflow: hidden;
+}
+
+#apps::before, #web::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: 
+    linear-gradient(180deg, rgba(5, 7, 14, 0.92) 0%, rgba(5, 7, 14, 0.85) 50%, rgba(5, 7, 14, 0.95) 100%),
+    url("/public/og-imagemj.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 0.35; /* Ajuste a opacidade aqui se quiser mais forte ou mais fraca */
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Garante que o conteúdo e cards fiquem na frente do fundo */
+#apps .section-header, #apps .apps-grid,
+#web .section-header, #web .apps-grid {
+  position: relative;
+  z-index: 1;
+}
+
+/* Efeito glass nos cards para destacar sobre a imagem de fundo */
+.app-card {
+  background: rgba(10, 14, 28, 0.85) !important;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
       *,
       *::before,
       *::after {
