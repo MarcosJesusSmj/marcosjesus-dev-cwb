@@ -69,20 +69,20 @@
 
     <style>
       .btn-whatsapp {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.6rem;
-  background: #25d366;
-  color: #000;
-  box-shadow: 0 0 20px rgba(37, 211, 102, 0.3);
-}
+        display: inline-flex;
+        align-items: center;
+        gap: 0.6rem;
+        background: #25d366;
+        color: #000;
+        box-shadow: 0 0 20px rgba(37, 211, 102, 0.3);
+      }
 
-.whatsapp-gif-icon {
-  width: 26px;
-  height: 26px;
-  display: block;
-  object-fit: contain;
-}
+      .whatsapp-gif-icon {
+        width: 26px;
+        height: 26px;
+        display: block;
+        object-fit: contain;
+      }
       /* Fundo estilizado com a imagem og-imagemj.png nas seções de Apps e Sites */
       #apps,
       #web {
@@ -282,6 +282,43 @@
         background: var(--accent);
         color: #000 !important;
         box-shadow: 0 0 16px var(--accent-glow);
+      }
+
+      /* === SCROLL CINEMA (Atos 0-4, vídeo real) === */
+      .scroll-cinema {
+        position: relative;
+        height: 500vh; /* 5 atos x 100vh cada */
+        z-index: 1;
+      }
+      .scroll-cinema-sticky {
+        position: sticky;
+        top: 0;
+        height: 100vh;
+        overflow: hidden;
+        background: var(--bg);
+      }
+      .cinema-video {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        max-width: 90vw;
+        max-height: 85vh;
+        width: auto;
+        height: auto;
+        border-radius: var(--radius);
+        box-shadow: 0 0 60px rgba(0, 229, 255, 0.15);
+        opacity: 0;
+        transition: opacity 0.5s ease;
+        pointer-events: none;
+      }
+      .cinema-video.active {
+        opacity: 1;
+      }
+      @media (max-width: 860px) {
+        .scroll-cinema {
+          height: 400vh;
+        }
       }
 
       /* === HERO SECTION === */
@@ -902,6 +939,57 @@
     </div>
     <div class="bg-grid"></div>
 
+    <!-- ===== SCROLL CINEMA (Atos 0-4, vídeo real) ===== -->
+    <section class="scroll-cinema" id="scrollCinema">
+      <div class="scroll-cinema-sticky">
+        <video
+          class="cinema-video active"
+          data-act="0"
+          src="/public/hero-videos/ato0.mp4"
+          autoplay
+          muted
+          loop
+          playsinline
+        ></video>
+        <video
+          class="cinema-video"
+          data-act="1"
+          src="/public/hero-videos/ato1.mp4"
+          autoplay
+          muted
+          loop
+          playsinline
+        ></video>
+        <video
+          class="cinema-video"
+          data-act="2"
+          src="/public/hero-videos/ato2.mp4"
+          autoplay
+          muted
+          loop
+          playsinline
+        ></video>
+        <video
+          class="cinema-video"
+          data-act="3"
+          src="/public/hero-videos/ato3.mp4"
+          autoplay
+          muted
+          loop
+          playsinline
+        ></video>
+        <video
+          class="cinema-video"
+          data-act="4"
+          src="/public/hero-videos/ato4.mp4"
+          autoplay
+          muted
+          loop
+          playsinline
+        ></video>
+      </div>
+    </section>
+
     <!-- Header com Navegação -->
     <header class="site-header">
       <a href="#top" class="header-logo">
@@ -1388,5 +1476,39 @@
         </div>
       </div>
     </div>
+
+    <script>
+      (function () {
+        const cinema = document.getElementById("scrollCinema");
+        const videos = Array.from(document.querySelectorAll(".cinema-video"));
+        const TOTAL_ATOS = videos.length;
+
+        // Garante que todos comecem tocando (loop contínuo, mesmo os escondidos)
+        videos.forEach((v) => {
+          v.play().catch(() => {});
+        });
+
+        function onScroll() {
+          const rect = cinema.getBoundingClientRect();
+          const cinemaHeight = cinema.offsetHeight - window.innerHeight;
+          if (cinemaHeight <= 0) return;
+
+          let progress = -rect.top / cinemaHeight;
+          progress = Math.min(Math.max(progress, 0), 1);
+
+          let activeAct = Math.floor(progress * TOTAL_ATOS);
+          if (activeAct >= TOTAL_ATOS) activeAct = TOTAL_ATOS - 1;
+
+          videos.forEach((v, i) => {
+            v.classList.toggle("active", i === activeAct);
+          });
+        }
+
+        window.addEventListener("scroll", onScroll, { passive: true });
+        window.addEventListener("resize", onScroll);
+        window.addEventListener("load", onScroll);
+        onScroll();
+      })();
+    </script>
   </body>
 </html>
