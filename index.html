@@ -742,6 +742,151 @@
         transform: scale(1.02);
       }
 
+      /* === E-BOOKS · DESIGN EDITORIAL & PRODUTO DIGITAL === */
+      .ebooks-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+      .ebook-card {
+        gap: 1.1rem;
+      }
+      .ebook-top {
+        display: flex;
+        gap: 1.3rem;
+        align-items: center;
+      }
+      /* Mockup 3D do livro (fallback em CSS quando a capa real não existe) */
+      .ebook-cover {
+        position: relative;
+        flex-shrink: 0;
+        width: 104px;
+        aspect-ratio: 3 / 4;
+        border-radius: 3px 8px 8px 3px;
+        background: linear-gradient(
+          155deg,
+          var(--cover-a, #0f1b2e) 0%,
+          var(--cover-b, #1b2c4a) 100%
+        );
+        box-shadow:
+          8px 10px 22px rgba(0, 0, 0, 0.55),
+          0 0 26px var(--card-bg, rgba(0, 229, 255, 0.1));
+        transform: perspective(700px) rotateY(-16deg);
+        transition: transform 0.4s ease;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        padding: 0.7rem 0.6rem 0.6rem 0.9rem;
+      }
+      .ebook-cover::before {
+        /* lombada */
+        content: "";
+        position: absolute;
+        inset: 0 auto 0 0;
+        width: 7px;
+        background: linear-gradient(
+          90deg,
+          rgba(0, 0, 0, 0.45),
+          rgba(255, 255, 255, 0.12)
+        );
+        z-index: 2;
+      }
+      .ebook-cover::after {
+        /* reflexo de luz */
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          120deg,
+          rgba(255, 255, 255, 0.18) 0%,
+          transparent 40%
+        );
+        z-index: 2;
+        pointer-events: none;
+      }
+      .app-card:hover .ebook-cover {
+        transform: perspective(700px) rotateY(-4deg) translateY(-3px);
+      }
+      .ebook-cover img {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        z-index: 1;
+      }
+      .ebook-cover-brand {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 0.42rem;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: var(--cover-ink, #d8a73d);
+      }
+      .ebook-cover-title {
+        font-size: 0.64rem;
+        letter-spacing: -0.01em;
+        font-weight: 800;
+        line-height: 1.12;
+        color: #fff;
+      }
+      .ebook-cover-title span {
+        display: block;
+        color: var(--cover-ink, #d8a73d);
+      }
+      .ebook-cover-author {
+        font-size: 0.42rem;
+        color: rgba(255, 255, 255, 0.75);
+      }
+      .ebook-meta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.4rem;
+        margin-top: 0.55rem;
+      }
+      .ebook-chip {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 0.62rem;
+        padding: 0.22rem 0.55rem;
+        border-radius: 5px;
+        background: var(--card-bg, rgba(0, 229, 255, 0.08));
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        color: var(--text);
+      }
+      .ebook-role {
+        font-size: 0.78rem;
+        color: var(--muted);
+        border-left: 2px solid var(--card-accent, var(--accent));
+        padding-left: 0.7rem;
+        line-height: 1.55;
+      }
+      .ebook-role strong {
+        color: var(--text);
+        font-weight: 600;
+      }
+      .ebook-actions {
+        display: flex;
+        gap: 0.6rem;
+        flex-wrap: wrap;
+      }
+      .ebook-actions .app-btn {
+        flex: 1;
+        min-width: 130px;
+      }
+      .app-btn.app-btn-ghost {
+        background: transparent;
+        color: var(--card-accent, var(--accent));
+        border: 1px solid var(--card-accent, var(--accent));
+      }
+      .ebook-credit {
+        text-align: center;
+        margin-top: 2.2rem;
+        font-size: 0.8rem;
+        color: var(--muted);
+      }
+      .ebook-credit a {
+        color: var(--accent);
+        text-decoration: none;
+      }
+
       /* === CONTATO / CTA FINAL === */
       .contact-card {
         background: linear-gradient(
@@ -924,7 +1069,8 @@
         .stack-tags {
           justify-content: center;
         }
-        .apps-grid {
+        .apps-grid,
+        .ebooks-grid {
           grid-template-columns: 1fr;
         }
       }
@@ -1000,6 +1146,7 @@
         <li><a href="#sobre">Sobre</a></li>
         <li><a href="#apps">Apps Android</a></li>
         <li><a href="#web">Projetos Web</a></li>
+        <li><a href="#ebooks">E-books</a></li>
         <li><a href="#contato" class="nav-btn">Contato</a></li>
       </ul>
     </header>
@@ -1109,6 +1256,8 @@
             <span class="stack-tag">Figma</span>
             <span class="stack-tag">Git / GitHub</span>
             <span class="stack-tag">Vercel</span>
+            <span class="stack-tag">Design Editorial</span>
+            <span class="stack-tag">Kiwify</span>
           </div>
         </div>
       </div>
@@ -1360,6 +1509,277 @@
           >
         </div>
       </div>
+    </section>
+
+    <!-- E-books · Design Editorial & Produto Digital -->
+    <!--
+      Capas reais: suba as imagens em /public com os nomes abaixo
+      (proporção 3:4, ~600x800px, .jpg). Se o arquivo não existir,
+      o onerror remove a <img> e o mockup em CSS aparece no lugar.
+        capa-verbo-to-be.jpg · capa-guia-viagem.jpg
+        capa-verbos-300.jpg  · capa-cozy-christmas.jpg
+    -->
+    <section class="section" id="ebooks">
+      <div class="section-header">
+        <p class="section-label">// design editorial & produto digital</p>
+        <h2 class="section-title">E-books & Produtos Digitais</h2>
+        <p class="section-subtitle">
+          Linha editorial da Teacher Stella Jesus: do conceito e diagramação à
+          publicação na Amazon, UICLAP e Kiwify — com apps companheiros,
+          páginas de venda e funil de checkout.
+        </p>
+      </div>
+
+      <div class="apps-grid ebooks-grid">
+        <!-- Verbo To Be Descomplicado -->
+        <div
+          class="app-card ebook-card"
+          style="
+            --card-accent: #d8a73d;
+            --card-bg: rgba(216, 167, 61, 0.1);
+            --cover-a: #0f1b2e;
+            --cover-b: #1c2f52;
+            --cover-ink: #d8a73d;
+          "
+        >
+          <div class="ebook-top">
+            <div class="ebook-cover">
+              <span class="ebook-cover-brand">TSJ English</span>
+              <span class="ebook-cover-title"
+                >Verbo To Be <span>Descomplicado</span></span
+              >
+              <span class="ebook-cover-author">Teacher Stella Jesus</span>
+              <img
+                src="/public/capa-verbo-to-be.jpg"
+                alt="Capa do e-book Verbo To Be Descomplicado"
+                loading="lazy"
+                onerror="this.remove()"
+              />
+            </div>
+            <div>
+              <div class="app-name">Verbo To Be Descomplicado</div>
+              <div class="app-tag">E-book · App de Exercícios</div>
+              <div class="ebook-meta">
+                <span class="ebook-chip">Kindle</span>
+                <span class="ebook-chip">Kiwify</span>
+                <span class="ebook-chip">Web App</span>
+              </div>
+            </div>
+          </div>
+          <p class="app-desc">
+            E-book de gramática para iniciantes com app de quiz integrado
+            (Firebase), login e progresso do aluno. PDF protegido com senha e
+            marca d'água, publicado na Loja Kindle.
+          </p>
+          <p class="ebook-role">
+            <strong>Meu papel:</strong> design editorial, capa, diagramação,
+            app companheiro, página de vendas e funil com order bump.
+          </p>
+          <div class="ebook-actions">
+            <a
+              class="app-btn"
+              href="https://teacherstellajesus.com/verbo-to-be-descomplicado"
+              target="_blank"
+              rel="noopener"
+              >📘 Ver Produto</a
+            >
+            <a
+              class="app-btn app-btn-ghost"
+              href="https://aprender-o-verbo-to-be.web.app"
+              target="_blank"
+              rel="noopener"
+              >⚡ App</a
+            >
+          </div>
+        </div>
+
+        <!-- Guia Prático: Inglês da Sua Viagem -->
+        <div
+          class="app-card ebook-card"
+          style="
+            --card-accent: #40c4ff;
+            --card-bg: rgba(64, 196, 255, 0.1);
+            --cover-a: #04324a;
+            --cover-b: #0a6e8f;
+            --cover-ink: #ffd54f;
+          "
+        >
+          <div class="ebook-top">
+            <div class="ebook-cover">
+              <span class="ebook-cover-brand">Guia Prático</span>
+              <span class="ebook-cover-title"
+                >Inglês da <span>Sua Viagem</span></span
+              >
+              <span class="ebook-cover-author">Teacher Stella Jesus</span>
+              <img
+                src="/public/capa-guia-viagem.jpg"
+                alt="Capa do Guia Prático: Inglês da Sua Viagem"
+                loading="lazy"
+                onerror="this.remove()"
+              />
+            </div>
+            <div>
+              <div class="app-name">Inglês da Sua Viagem</div>
+              <div class="app-tag">Guia Prático · Viagem</div>
+              <div class="ebook-meta">
+                <span class="ebook-chip">Kindle</span>
+                <span class="ebook-chip">Kiwify</span>
+                <span class="ebook-chip">12 lições</span>
+              </div>
+            </div>
+          </div>
+          <p class="app-desc">
+            Guia de inglês para situações reais de viagem — aeroporto, hotel,
+            restaurante — com app de prática em 12 lições e Master Test final.
+          </p>
+          <p class="ebook-role">
+            <strong>Meu papel:</strong> design editorial, capa, app de quiz,
+            página de vendas e oferta complementar no checkout.
+          </p>
+          <div class="ebook-actions">
+            <a
+              class="app-btn"
+              href="https://teacherstellajesus.com/guia-pratico-ingles-da-sua-viagem/"
+              target="_blank"
+              rel="noopener"
+              >✈️ Ver Produto</a
+            >
+            <a
+              class="app-btn app-btn-ghost"
+              href="https://ingles-viagem-tsj.web.app"
+              target="_blank"
+              rel="noopener"
+              >⚡ App</a
+            >
+          </div>
+        </div>
+
+        <!-- Verbos 300 -->
+        <div
+          class="app-card ebook-card"
+          style="
+            --card-accent: #b388ff;
+            --card-bg: rgba(179, 136, 255, 0.1);
+            --cover-a: #1e0f3d;
+            --cover-b: #4a2a8a;
+            --cover-ink: #69f0ae;
+          "
+        >
+          <div class="ebook-top">
+            <div class="ebook-cover">
+              <span class="ebook-cover-brand">TSJ English</span>
+              <span class="ebook-cover-title"
+                >300 Verbos <span>em Inglês</span></span
+              >
+              <span class="ebook-cover-author">Teacher Stella Jesus</span>
+              <img
+                src="/public/capa-verbos-300.jpg"
+                alt="Capa do e-book Verbos em Inglês Descomplicados - 300 verbos"
+                loading="lazy"
+                onerror="this.remove()"
+              />
+            </div>
+            <div>
+              <div class="app-name">Verbos 300</div>
+              <div class="app-tag">E-book · Lançamento</div>
+              <div class="ebook-meta">
+                <span class="ebook-chip">10 lições</span>
+                <span class="ebook-chip">~100 págs</span>
+                <span class="ebook-chip">Novo</span>
+              </div>
+            </div>
+          </div>
+          <p class="app-desc">
+            300 verbos do básico ao avançado, com tabelas de conjugação, textos,
+            exercícios e um elenco de personagens ilustrados que acompanha o
+            aluno em cada lição.
+          </p>
+          <p class="ebook-role">
+            <strong>Meu papel:</strong> direção de arte, criação dos
+            personagens com IA, diagramação e produto na Kiwify com área de
+            membros.
+          </p>
+          <div class="ebook-actions">
+            <a
+              class="app-btn"
+              href="https://pay.kiwify.com.br/5rYxubF"
+              target="_blank"
+              rel="noopener"
+              >📗 Ver Produto</a
+            >
+          </div>
+        </div>
+
+        <!-- Cozy Christmas English -->
+        <div
+          class="app-card ebook-card"
+          style="
+            --card-accent: #ff5252;
+            --card-bg: rgba(255, 82, 82, 0.1);
+            --cover-a: #8e1b1b;
+            --cover-b: #1b5e3a;
+            --cover-ink: #ffd54f;
+          "
+        >
+          <div class="ebook-top">
+            <div class="ebook-cover">
+              <span class="ebook-cover-brand">Coloring Book</span>
+              <span class="ebook-cover-title"
+                >Cozy Christmas <span>English</span></span
+              >
+              <span class="ebook-cover-author">Teacher Stella Jesus</span>
+              <img
+                src="/public/capa-cozy-christmas.jpg"
+                alt="Capa do livro de colorir Cozy Christmas English"
+                loading="lazy"
+                onerror="this.remove()"
+              />
+            </div>
+            <div>
+              <div class="app-name">Cozy Christmas English</div>
+              <div class="app-tag">Livro de Colorir · Impresso</div>
+              <div class="ebook-meta">
+                <span class="ebook-chip">40 cenas</span>
+                <span class="ebook-chip">400 palavras</span>
+                <span class="ebook-chip">UICLAP</span>
+              </div>
+            </div>
+          </div>
+          <p class="app-desc">
+            Livro de colorir de Natal estilo "cozy" para aprender vocabulário
+            em inglês, com glossário lateral e o mascote Pip escondido nas
+            páginas. Versão impressa e PDF para imprimir.
+          </p>
+          <p class="ebook-role">
+            <strong>Meu papel:</strong> conceito, ilustrações com IA, capa,
+            miolo para impressão e publicação na UICLAP e Kiwify.
+          </p>
+          <div class="ebook-actions">
+            <a
+              class="app-btn"
+              href="https://loja.uiclap.com/titulo/ua222566"
+              target="_blank"
+              rel="noopener"
+              >🎄 Impresso</a
+            >
+            <a
+              class="app-btn app-btn-ghost"
+              href="https://pay.kiwify.com.br/ugoelha"
+              target="_blank"
+              rel="noopener"
+              >📄 PDF</a
+            >
+          </div>
+        </div>
+      </div>
+
+      <p class="ebook-credit">
+        Conteúdo pedagógico:
+        <a href="https://teacherstellajesus.com" target="_blank" rel="noopener"
+          >Teacher Stella Jesus</a
+        >
+        · Design, tecnologia e produto: Marcos Jesus Dev CwB
+      </p>
     </section>
 
     <!-- Contato / Call to Action -->
